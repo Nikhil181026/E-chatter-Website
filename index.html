@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="E-chatter is a creative digital studio helping businesses grow through websites, design, content and digital services.">
+  <meta name="theme-color" content="#100b18">
+  <title>E-chatter — Dream. Design. Deliver.</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #100b18;
+      --surface: #1b1225;
+      --surface2: #24172e;
+      --white: #fff8ff;
+      --muted: #b9aabe;
+      --pink: #f35cae;
+      --lime: #d8ff55;
+      --purple: #8b55ff;
+      --line: rgba(255,255,255,.12);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: "DM Sans", sans-serif;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+
+    .container { width: min(1160px, 90%); margin: auto; }
+
+    nav {
+      height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(16,11,24,.88);
+      backdrop-filter: blur(18px);
+      padding: 0 5%;
+    }
+
+    .logo {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 27px;
+      font-weight: 700;
+      letter-spacing: -1.5px;
+    }
+    .logo span { color: var(--pink); }
+
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a {
+      color: var(--muted);
+      font-size: 14px;
+      transition: .25s;
+    }
+    .nav-links a:hover { color: var(--lime); }
+
+    .nav-cta, .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--lime);
+      color: #171020;
+      border-radius: 50px;
+      padding: 13px 23px;
+      font-weight: 800;
+      font-size: 14px;
+      transition: .3s;
+      border: none;
+      cursor: pointer;
+    }
+    .nav-cta:hover, .button:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 35px rgba(216,255,85,.2);
+    }
+
+    .menu-button {
+      display: none;
+      background: none;
+      color: white;
+      border: 0;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    .hero {
+      min-height: 690px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      align-items: center;
+      gap: 45px;
+      padding: 95px 0;
+      position: relative;
+    }
+
+    .eyebrow {
+      color: var(--lime);
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 800;
+      margin-bottom: 25px;
+    }
+
+    h1, h2, h3 { font-family: "Space Grotesk", sans-serif; }
+
+    h1 {
+      font-size: clamp(55px, 7.5vw, 100px);
+      line-height: .99;
+      letter-spacing: -6px;
+      max-width: 720px;
+    }
+    h1 .pink { color: var(--pink); }
+    h1 .outline {
+      color: transparent;
+      -webkit-text-stroke: 1.5px var(--white);
+    }
+
+    .hero-copy {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.8;
+      max-width: 480px;
+      margin: 28px 0;
+    }
+    .hero-buttons { display: flex; align-items: center; gap: 25px; flex-wrap: wrap; }
+    .text-link { font-weight: 700; font-size: 14px; }
+    .text-link span { color: var(--pink); margin-left: 7px; }
+
+    .hero-art {
+      min-height: 440px;
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+
+    .orb {
+      width: min(360px, 75vw);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 30%, #ff9ed5, transparent 25%),
+        radial-gradient(circle at 65% 60%, #a54bff, transparent 40%),
+        linear-gradient(135deg, #581e64, #1d1033 65%);
+      box-shadow: 0 0 100px rgba(198,66,255,.22);
+      animation: float 6s ease-in-out infinite;
+      position: relative;
+    }
+    .orb:before, .orb:after {
+      content: "";
+      position: absolute;
+      inset: -22px;
+      border: 1px solid rgba(243,92,174,.65);
+      border-radius: 50%;
+      transform: rotate(-28deg) scaleY(.38);
+    }
+    .orb:after {
+      border-color: rgba(216,255,85,.55);
+      transform: rotate(48deg) scaleY(.55);
+    }
+    .orb-center {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      font-family: "Space Grotesk";
+      font-size: 120px;
+      font-weight: 700;
+      color: rgba(255,255,255,.92);
+      text-shadow: 0 0 40px #f35cae;
+    }
+    .floating-tag {
+      position: absolute;
+      padding: 13px 18px;
+      border: 1px solid var(--line);
+      background: rgba(36,23,46,.9);
+      border-radius: 14px;
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 15px 45px rgba(0,0,0,.25);
+    }
+    .tag-one { top: 45px; left: 0; color: var(--lime); }
+    .tag-two { bottom: 65px; right: 0; color: var(--pink); }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0) rotate(-5deg); }
+      50% { transform: translateY(-18px) rotate(5deg); }
+    }
+
+    .ticker {
+      overflow: hidden;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 21px 0;
+      color: var(--lime);
+      font-family: "Space Grotesk";
+      font-weight: 700;
+      letter-spacing: 2px;
+      white-space: nowrap;
+    }
+    .ticker-track { display: inline-block; animation: slide 25s linear infinite; }
+    @keyframes slide { to { transform: translateX(-50%); } }
+
+    section { padding: 110px 0; }
+    .section-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 30px;
+      margin-bottom: 45px;
+    }
+    .section-top h2 {
+      font-size: clamp(38px, 5vw, 62px);
+      line-height: 1.05;
+      letter-spacing: -3px;
+      max-width: 650px;
+    }
+    .section-top p { color: var(--muted); max-width: 340px; line-height: 1.7; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 17px;
+    }
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 32px;
+      min-height: 245px;
+      transition: .35s;
+    }
+    .service-card:hover {
+      transform: translateY(-9px);
+      border-color: var(--pink);
+      background: var(--surface2);
+    }
+    .service-icon { font-size: 32px; margin-bottom: 30px; }
+    .service-card h3 { font-size: 22px; margin-bottom: 12px; }
+    .service-card p { color: var(--muted); line-height: 1.7; font-size: 14px; }
+
+    .about {
+      background: var(--surface);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-art {
+      min-height: 390px;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(243,92,174,.6), transparent 30%),
+        radial-gradient(circle at 75% 70%, rgba(139,85,255,.7), transparent 35%),
+        linear-gradient(135deg, #351a43, #171020);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+    .about-art span {
+      font-family: "Space Grotesk";
+      font-size: clamp(90px, 15vw, 190px);
+      font-weight: 700;
+      color: var(--lime);
+      transform: rotate(-12deg);
+      text-shadow: 0 0 45px rgba(216,255,85,.25);
+    }
+    .about-copy h2 {
+      font-size: clamp(40px, 5vw, 62px);
+      line-height: 1.05;
+      letter-spacing: -3px;
+      margin-bottom: 25px;
+    }
+    .about-copy p { color: var(--muted); line-height: 1.9; margin-bottom: 18px; }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .process-card {
+      padding: 25px;
+      border-top: 2px solid var(--pink);
+      background: linear-gradient(180deg, var(--surface), transparent);
+    }
+    .process-card .number { color: var(--lime); font-size: 13px; margin-bottom: 30px; }
+    .process-card h3 { font-size: 21px; margin-bottom: 12px; }
+    .process-card p { color: var(--muted); line-height: 1.7; font-size: 14px; }
+
+    .contact {
+      background: linear-gradient(135deg, #35152f, #171020 65%);
+      border-top: 1px solid var(--line);
+    }
+    .contact-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 65px;
+      align-items: start;
+    }
+    .contact h2 {
+      font-size: clamp(45px, 6vw, 75px);
+      line-height: 1;
+      letter-spacing: -4px;
+      margin-bottom: 25px;
+    }
+    .contact-copy { color: var(--muted); line-height: 1.8; }
+    form { display: grid; gap: 14px; }
+    input, textarea, select {
+      width: 100%;
+      padding: 17px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(16,11,24,.8);
+      color: white;
+      outline: none;
+      font: inherit;
+    }
+    input:focus, textarea:focus, select:focus { border-color: var(--lime); }
+    textarea { min-height: 130px; resize: vertical; }
+    select option { background: var(--bg); }
+    form button { justify-self: start; }
+
+    footer {
+      padding: 35px 0;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    footer strong { color: white; font-family: "Space Grotesk"; font-size: 20px; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: .8s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 850px) {
+      .hero, .about-grid, .contact-box { grid-template-columns: 1fr; }
+      .hero { padding-top: 75px; }
+      .hero-art { min-height: 350px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { gap: 35px; }
+      .section-top { align-items: start; flex-direction: column; }
+    }
+
+    @media (max-width: 600px) {
+      nav { height: 70px; }
+      .menu-button { display: block; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: var(--surface);
+        padding: 25px 5%;
+        flex-direction: column;
+        align-items: start;
+        border-bottom: 1px solid var(--line);
+      }
+      .nav-links.open { display: flex; }
+      .nav-cta { display: none; }
+      h1 { letter-spacing: -3px; }
+      section { padding: 75px 0; }
+      .services-grid, .process-grid { grid-template-columns: 1fr; }
+      .hero-art { min-height: 300px; }
+      .orb { width: 230px; }
+      .orb-center { font-size: 85px; }
+      .tag-one { left: 0; top: 15px; }
+      .tag-two { right: 0; bottom: 20px; }
+      footer { flex-direction: column; align-items: start; }
+    }
+
+/* ===== E-CHATTER 3D UPGRADE ===== */
+
+.hero-art {
+  perspective: 1000px;
+}
+
+.orb {
+  transform-style: preserve-3d;
+  box-shadow:
+    0 0 70px rgba(243,92,174,.3),
+    0 0 130px rgba(139,85,255,.2);
+}
+
+.orb-center {
+  transform: translateZ(55px);
+}
+
+.orb::before {
+  transform: translateZ(25px) rotate(-28deg) scaleY(.38);
+}
+
+.orb::after {
+  transform: translateZ(-15px) rotate(48deg) scaleY(.55);
+}
+
+/* Floating service cards */
+.service-card {
+  position: relative;
+  transform-style: preserve-3d;
+  transform: perspective(900px) rotateX(var(--rx, 0deg))
+    rotateY(var(--ry, 0deg));
+  transition: transform .2s ease, border-color .3s, background .3s;
+  will-change: transform;
+}
+
+.service-card:hover {
+  border-color: var(--lime);
+  box-shadow: 0 20px 55px rgba(139,85,255,.16);
+}
+
+.service-icon {
+  transform: translateZ(35px);
+  display: inline-block;
+}
+
+.service-card h3 {
+  transform: translateZ(25px);
+}
+
+.service-card p {
+  transform: translateZ(15px);
+}
+
+/* Floating background glow */
+.hero-art::before {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: var(--purple);
+  filter: blur(110px);
+  opacity: .2;
+  animation: glowPulse 5s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+  from { transform: scale(.8); opacity: .12; }
+  to { transform: scale(1.2); opacity: .3; }
+}
+
+/* Touch screens and smaller devices */
+@media (hover: none), (max-width: 850px) {
+  .service-card {
+    transform: none !important;
+  }
+  .service-card:active {
+    transform: scale(.98) !important;
+  }
+}
+
+/* Respect accessibility settings */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a class="logo" href="#home">E<span>-</span>chatter.</a>
+    <button class="menu-button" id="menuButton" aria-label="Open menu">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#process">Our process</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="nav-cta" href="#contact">Let's talk ↗</a>
+  </nav>
+
+  <main>
+    <div class="container hero" id="home">
+      <div class="reveal">
+        <div class="eyebrow">A creative digital studio ✳</div>
+        <h1>Ideas deserve <span class="pink">more</span> than just <span class="outline">ideas.</span></h1>
+        <p class="hero-copy">
+          We turn your thoughts into digital experiences.
+          From websites to content and creative design,
+          let's make something people remember.
+        </p>
+        <div class="hero-buttons">
+          <a class="button" href="#services">Explore what we do ↗</a>
+          <a class="text-link" href="#about">Get to know us <span>→</span></a>
+        </div>
+      </div>
+
+      <div class="hero-art reveal">
+        <div class="orb"><div class="orb-center">E.</div></div>
+        <div class="floating-tag tag-one">✳ Creative thinking</div>
+        <div class="floating-tag tag-two">✦ Digital possibilities</div>
+      </div>
+    </div>
+
+    <div class="ticker">
+      <div class="ticker-track">
+        &nbsp; DREAM. DESIGN. DELIVER. ✳ YOUR IDEAS. OUR SKILLS. REAL RESULTS. ✳
+        DREAM. DESIGN. DELIVER. ✳ YOUR IDEAS. OUR SKILLS. REAL RESULTS. ✳
+      </div>
+    </div>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-top reveal">
+          <div>
+            <div class="eyebrow">What we bring to the table</div>
+            <h2>Creative solutions.<br><span class="pink">Real possibilities.</span></h2>
+          </div>
+          <p>Good ideas need the right digital support. Here's how we can help bring yours to life.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card reveal">
+            <div class="service-icon">🌐</div>
+            <h3>Website Development</h3>
+            <p>Modern, responsive websites that give your business a strong online presence.</p>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon">✍️</div>
+            <h3>Content Writing</h3>
+            <p>Clear, engaging words that explain your value and connect with your audience.</p>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon">🎨</div>
+            <h3>Graphic Design</h3>
+            <p>Visual ideas, social graphics and creative designs that help your brand stand out.</p>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon">🎬</div>
+            <h3>Video Editing</h3>
+            <p>Turn raw clips into polished videos for your brand, products and social platforms.</p>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon">📱</div>
+            <h3>Social Media Support</h3>
+            <p>Creative content and practical support to keep your online presence active.</p>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon">⚡</div>
+            <h3>Digital Assistance</h3>
+            <p>Helpful digital tasks and creative support to make everyday work easier.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container about-grid">
+        <div class="about-art reveal"><span>E.</span></div>
+        <div class="about-copy reveal">
+          <div class="eyebrow">A little about E-chatter</div>
+          <h2>Your ideas.<br><span class="pink">Our skills.</span><br>Real results.</h2>
+          <p>
+            E-chatter is a creative digital studio built around one simple idea:
+            every business and creator deserves the opportunity to show up
+            confidently online.
+          </p>
+          <p>
+            We bring together websites, content, design and digital support
+            to help turn ideas into something real.
+          </p>
+          <a class="button" href="#contact">Let's create together ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="container">
+        <div class="section-top reveal">
+          <div>
+            <div class="eyebrow">Simple. Clear. Collaborative.</div>
+            <h2>From first thought<br>to <span class="pink">final delivery.</span></h2>
+          </div>
+          <p>A straightforward process helps us understand your needs and work towards the right solution.</p>
+        </div>
+
+        <div class="process-grid">
+          <article class="process-card reveal">
+            <div class="number">01 / DISCOVER</div>
+            <h3>We listen.</h3>
+            <p>Tell us about your idea, business and what you want to achieve.</p>
+          </article>
+          <article class="process-card reveal">
+            <div class="number">02 / PLAN</div>
+            <h3>We plan.</h3>
+            <p>We shape the idea into a clear direction and practical plan.</p>
+          </article>
+          <article class="process-card reveal">
+            <div class="number">03 / CREATE</div>
+            <h3>We create.</h3>
+            <p>We work on the design, content or digital solution together.</p>
+          </article>
+          <article class="process-card reveal">
+            <div class="number">04 / DELIVER</div>
+            <h3>We deliver.</h3>
+            <p>We share the finished work and help you take the next step.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container contact-box">
+        <div class="reveal">
+          <div class="eyebrow">Have something in mind?</div>
+          <h2>Let's make<br>it <span class="pink">happen.</span></h2>
+          <p class="contact-copy">
+            Have a project, an idea or just a question?
+            Tell us a little about it. We'd love to hear from you.
+          </p>
+        </div>
+
+        <form id="contactForm" class="reveal">
+          <input type="text" id="name" placeholder="Your name" required>
+          <input type="email" id="email" placeholder="Your email address" required>
+          <select id="service" required>
+            <option value="">What do you need help with?</option>
+            <option>Website Development</option>
+            <option>Content Writing</option>
+            <option>Graphic Design</option>
+            <option>Video Editing</option>
+            <option>Social Media Support</option>
+            <option>Digital Assistance</option>
+            <option>Something else</option>
+          </select>
+          <textarea id="message" placeholder="Tell us about your idea..." required></textarea>
+          <button class="button" type="submit">Send enquiry ↗</button>
+          <p id="formMessage" style="color:var(--lime);font-size:13px;"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <strong>E-chatter.</strong>
+    <span>Dream. Design. Deliver.</span>
+    <span>© <span id="year"></span> E-chatter. All rights reserved.</span>
+  </footer>
+
+  <script>
+    const menuButton = document.getElementById("menuButton");
+    const navLinks = document.getElementById("navLinks");
+
+    menuButton.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => navLinks.classList.remove("open"));
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach(item => observer.observe(item));
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.getElementById("contactForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const service = document.getElementById("service").value;
+      const message = document.getElementById("message").value.trim();
+
+      const subject = encodeURIComponent("New E-chatter enquiry from " + name);
+      const body = encodeURIComponent(
+        "Name: " + name +
+        "\nEmail: " + email +
+        "\nService: " + service +
+        "\nMessage: " + message
+      );
+
+      // Replace this address with your real business email before publishing.
+      window.location.href = "mailto:YOUR-EMAIL@example.com?subject=" + subject + "&body=" + body;
+
+      document.getElementById("formMessage").textContent =
+        "Your email app should open with your enquiry. Replace the demo email address before publishing.";
+    });
+ 
+/* 3D mouse interaction for service cards */
+const cards = document.querySelectorAll(".service-card");
+
+cards.forEach(card => {
+  card.addEventListener("pointermove", event => {
+    if (event.pointerType !== "mouse") return;
+
+    const rect = card.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width;
+    const y = (event.clientY - rect.top) / rect.height;
+
+    const rotateY = (x - 0.5) * 12;
+    const rotateX = (0.5 - y) * 12;
+
+    card.style.setProperty("--rx", `${rotateX}deg`);
+    card.style.setProperty("--ry", `${rotateY}deg`);
+  });
+
+  card.addEventListener("pointerleave", () => {
+    card.style.setProperty("--rx", "0deg");
+    card.style.setProperty("--ry", "0deg");
+  });
+});
+
+  </script>
+</body>
+</html>
