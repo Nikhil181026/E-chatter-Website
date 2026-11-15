@@ -20,6 +20,8 @@ A MUCH MORE SOCIALLY ACTIVE PAGE
 
 🚨JUST IN: Jonathan's Team Apex Gaming is in final discussions to sign a new roster.
 
+The tag lineup is going with ORomega with whole outrage line up and jonathan is going with jelly of current lineup as another side team of apex gaming.
+
 
 
 \#CEGC2026 is expected to be the final tournament for the current lineup, with an official announcement expected after the event.
