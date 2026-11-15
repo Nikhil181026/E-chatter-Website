@@ -1,0 +1,845 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080711">
+<title>News to Grow | E-chatter</title>
+<meta name="description" content="Explore the future of AI, technology, startups and digital business with News to Grow by E-chatter.">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #080711;
+  --panel: rgba(255,255,255,.055);
+  --white: #f8f6ff;
+  --muted: #aaa5bd;
+  --cyan: #55edff;
+  --violet: #a16aff;
+  --pink: #ff54c8;
+  --lime: #d8ff52;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior:smooth; }
+
+body {
+  background:var(--bg);
+  color:var(--white);
+  font-family:'DM Sans',sans-serif;
+  overflow-x:hidden;
+}
+
+a { color:inherit; text-decoration:none; }
+
+button { font:inherit; }
+
+.background-glow {
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-2;
+  background:
+    radial-gradient(ellipse at 15% 20%,rgba(107,53,173,.20),transparent 35%),
+    radial-gradient(ellipse at 85% 40%,rgba(0,181,208,.12),transparent 35%),
+    radial-gradient(ellipse at 50% 95%,rgba(180,47,142,.12),transparent 40%);
+}
+
+#particles {
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+}
+
+.navbar {
+  position:sticky;
+  top:0;
+  z-index:20;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:20px 7%;
+  background:rgba(8,7,17,.78);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:23px;
+  font-weight:700;
+  letter-spacing:-1px;
+}
+
+.logo span { color:var(--cyan); }
+
+.nav-links {
+  display:flex;
+  gap:28px;
+  align-items:center;
+  font-size:13px;
+  color:var(--muted);
+}
+
+.nav-links a:hover { color:var(--cyan); }
+
+.nav-cta {
+  border:1px solid rgba(85,237,255,.4);
+  padding:10px 17px;
+  border-radius:30px;
+  color:var(--cyan);
+}
+
+.hero {
+  min-height:720px;
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  align-items:center;
+  padding:75px 8% 90px;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero-copy { position:relative; z-index:2; }
+
+.eyebrow {
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding:9px 14px;
+  border:1px solid rgba(85,237,255,.25);
+  border-radius:30px;
+  background:rgba(85,237,255,.055);
+  color:var(--cyan);
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+.live-dot {
+  width:7px;
+  height:7px;
+  background:var(--lime);
+  border-radius:50%;
+  box-shadow:0 0 12px var(--lime);
+  animation:pulse 1.6s infinite;
+}
+
+h1 {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(55px,7.2vw,100px);
+  line-height:.98;
+  letter-spacing:-5px;
+  margin:30px 0 25px;
+}
+
+.gradient-text {
+  background:linear-gradient(100deg,var(--cyan),var(--violet),var(--pink));
+  background-size:200% auto;
+  color:transparent;
+  background-clip:text;
+  -webkit-background-clip:text;
+  animation:gradient 6s linear infinite;
+}
+
+.hero-copy p {
+  color:var(--muted);
+  font-size:17px;
+  line-height:1.8;
+  max-width:520px;
+}
+
+.hero-actions {
+  display:flex;
+  gap:14px;
+  margin-top:35px;
+  flex-wrap:wrap;
+}
+
+.primary-btn,.secondary-btn {
+  padding:15px 23px;
+  border-radius:9px;
+  font-size:13px;
+  font-weight:700;
+  transition:.3s;
+}
+
+.primary-btn {
+  background:linear-gradient(110deg,#55edff,#a16aff);
+  color:#090814;
+  box-shadow:0 0 28px rgba(85,237,255,.19);
+}
+
+.primary-btn:hover {
+  transform:translateY(-4px);
+  box-shadow:0 0 40px rgba(85,237,255,.4);
+}
+
+.secondary-btn {
+  border:1px solid rgba(255,255,255,.17);
+  color:white;
+}
+
+.secondary-btn:hover {
+  border-color:var(--cyan);
+  color:var(--cyan);
+}
+
+/* 3D HOLOGRAPHIC ORB */
+
+.orb-stage {
+  height:510px;
+  display:grid;
+  place-items:center;
+  perspective:1100px;
+  position:relative;
+}
+
+.orb {
+  position:relative;
+  width:min(360px,75vw);
+  aspect-ratio:1;
+  border-radius:50%;
+  transform-style:preserve-3d;
+  animation:float 7s ease-in-out infinite, rotateOrb 24s linear infinite;
+  background:
+    radial-gradient(circle at 32% 28%,rgba(255,255,255,.55),transparent 9%),
+    radial-gradient(circle at 38% 36%,#4b3485 0%,#17102e 36%,#090817 69%);
+  box-shadow:
+    inset -35px -35px 70px #02020a,
+    inset 15px 12px 45px rgba(132,89,255,.5),
+    0 0 50px rgba(161,106,255,.25),
+    0 0 120px rgba(85,237,255,.12);
+}
+
+.orb::before,.orb::after {
+  content:"";
+  position:absolute;
+  inset:-20px;
+  border:1px solid rgba(85,237,255,.45);
+  border-radius:50%;
+  transform:rotateX(70deg) rotateY(-18deg);
+  box-shadow:0 0 25px rgba(85,237,255,.15);
+}
+
+.orb::after {
+  inset:-43px;
+  border-color:rgba(255,84,200,.4);
+  transform:rotateX(72deg) rotateY(40deg);
+}
+
+.orb-core {
+  position:absolute;
+  inset:22%;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#8dfaff,#4c69ba 32%,#221344 70%);
+  opacity:.6;
+  filter:blur(2px);
+  box-shadow:0 0 55px rgba(85,237,255,.3);
+}
+
+.orb-ring {
+  position:absolute;
+  inset:-62px;
+  border:1px dashed rgba(216,255,82,.35);
+  border-radius:50%;
+  transform:rotateX(75deg) rotateY(-25deg);
+  animation:ringSpin 18s linear infinite;
+}
+
+.orb-label {
+  position:absolute;
+  bottom:5%;
+  right:-2%;
+  padding:13px 17px;
+  border:1px solid rgba(85,237,255,.25);
+  background:rgba(9,8,22,.7);
+  backdrop-filter:blur(12px);
+  border-radius:12px;
+  font-size:11px;
+  color:var(--cyan);
+  letter-spacing:2px;
+  box-shadow:0 10px 35px #000;
+}
+
+.orb-label span { display:block; color:white; font-size:17px; margin-top:5px; }
+
+.orb-chip {
+  position:absolute;
+  top:13%;
+  left:0;
+  border:1px solid rgba(255,84,200,.35);
+  background:rgba(255,84,200,.08);
+  color:#ff8be0;
+  border-radius:10px;
+  padding:12px 15px;
+  font-size:12px;
+  animation:float 5s ease-in-out infinite reverse;
+}
+
+/* MOVING DATA STRIP */
+
+.ticker {
+  overflow:hidden;
+  border-top:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.025);
+  padding:19px 0;
+}
+
+.ticker-track {
+  display:flex;
+  width:max-content;
+  animation:marquee 32s linear infinite;
+}
+
+.ticker-track span {
+  padding:0 35px;
+  color:#c6bed8;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:13px;
+  letter-spacing:2px;
+  white-space:nowrap;
+}
+
+.ticker-track b { color:var(--cyan); margin-right:10px; }
+
+/* SECTIONS */
+
+.section {
+  padding:100px 8%;
+}
+
+.section-heading {
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:25px;
+  margin-bottom:40px;
+}
+
+.section-heading small {
+  color:var(--cyan);
+  letter-spacing:3px;
+  font-size:11px;
+}
+
+.section-heading h2 {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(34px,5vw,55px);
+  margin-top:12px;
+  letter-spacing:-2px;
+}
+
+.section-heading p {
+  color:var(--muted);
+  max-width:350px;
+  line-height:1.7;
+  font-size:14px;
+}
+
+/* CATEGORY FILTERS */
+
+.filters {
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-bottom:35px;
+}
+
+.filter-btn {
+  padding:11px 19px;
+  border-radius:30px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.1);
+  color:#bbb4ca;
+  cursor:pointer;
+  font-size:12px;
+  transition:.3s;
+}
+
+.filter-btn:hover,.filter-btn.active {
+  background:rgba(85,237,255,.1);
+  border-color:var(--cyan);
+  color:var(--cyan);
+  box-shadow:0 0 20px rgba(85,237,255,.1);
+}
+
+/* NEWS CARDS */
+
+.news-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:22px;
+  perspective:1200px;
+}
+
+.news-card {
+  min-height:290px;
+  position:relative;
+  overflow:hidden;
+  padding:28px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.1);
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.085),rgba(255,255,255,.018));
+  backdrop-filter:blur(15px);
+  transform-style:preserve-3d;
+  transition:border-color .35s,box-shadow .35s;
+}
+
+.news-card::before {
+  content:"";
+  position:absolute;
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  right:-75px;
+  top:-80px;
+  background:var(--card-glow,rgba(85,237,255,.22));
+  filter:blur(50px);
+  pointer-events:none;
+}
+
+.news-card:hover {
+  border-color:rgba(85,237,255,.5);
+  box-shadow:0 25px 55px rgba(0,0,0,.3),0 0 25px rgba(85,237,255,.07);
+}
+
+.card-number {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:42px;
+  font-weight:700;
+  color:rgba(255,255,255,.12);
+  transform:translateZ(30px);
+}
+
+.card-icon {
+  font-size:29px;
+  margin:20px 0;
+  transform:translateZ(45px);
+}
+
+.news-card h3 {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:22px;
+  margin-bottom:12px;
+  transform:translateZ(35px);
+}
+
+.news-card p {
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.7;
+  transform:translateZ(25px);
+}
+
+.card-link {
+  display:inline-block;
+  margin-top:22px;
+  font-size:12px;
+  color:var(--cyan);
+  transform:translateZ(40px);
+}
+
+.news-card[data-category="AI"] { --card-glow:rgba(85,237,255,.24); }
+.news-card[data-category="Technology"] { --card-glow:rgba(161,106,255,.28); }
+.news-card[data-category="Startups"] { --card-glow:rgba(255,84,200,.22); }
+.news-card[data-category="Business"] { --card-glow:rgba(216,255,82,.18); }
+
+.news-card.hidden { display:none; }
+
+/* FEATURE STRIP */
+
+.feature {
+  margin:20px 8% 100px;
+  padding:55px;
+  border-radius:25px;
+  border:1px solid rgba(161,106,255,.25);
+  background:
+    radial-gradient(circle at 90% 20%,rgba(161,106,255,.19),transparent 40%),
+    linear-gradient(120deg,#17102b,#0d0b18);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:30px;
+  overflow:hidden;
+  position:relative;
+}
+
+.feature h2 {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(28px,4vw,45px);
+  margin:15px 0;
+}
+
+.feature p {
+  color:var(--muted);
+  line-height:1.7;
+  max-width:550px;
+}
+
+.feature-sphere {
+  width:160px;
+  height:160px;
+  flex-shrink:0;
+  border-radius:50%;
+  background:radial-gradient(circle at 30% 25%,#b4ffff,#8c52df 35%,#26133d 70%);
+  box-shadow:inset -20px -20px 35px #090711,0 0 60px rgba(161,106,255,.3);
+  animation:float 6s ease-in-out infinite;
+}
+
+/* FOOTER */
+
+footer {
+  padding:35px 8%;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+  border-top:1px solid rgba(255,255,255,.08);
+  color:var(--muted);
+  font-size:12px;
+}
+
+footer a { color:var(--cyan); }
+
+/* ANIMATIONS */
+
+@keyframes float {
+  0%,100% { transform:translateY(0); }
+  50% { transform:translateY(-18px); }
+}
+
+@keyframes rotateOrb {
+  from { filter:hue-rotate(0deg); }
+  to { filter:hue-rotate(35deg); }
+}
+
+@keyframes ringSpin {
+  from { transform:rotateX(75deg) rotateY(-25deg) rotateZ(0deg); }
+  to { transform:rotateX(75deg) rotateY(-25deg) rotateZ(360deg); }
+}
+
+@keyframes pulse {
+  50% { opacity:.35; box-shadow:0 0 2px var(--lime); }
+}
+
+@keyframes gradient {
+  to { background-position:200% center; }
+}
+
+@keyframes marquee {
+  to { transform:translateX(-50%); }
+}
+
+.reveal {
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity .8s ease,transform .8s ease;
+}
+
+.reveal.visible {
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* MOBILE */
+
+@media(max-width:900px) {
+  .hero {
+    grid-template-columns:1fr;
+    text-align:center;
+    padding-top:80px;
+  }
+  .hero-copy p { margin:auto; }
+  .hero-actions { justify-content:center; }
+  .orb-stage { height:440px; margin-top:25px; }
+  .section-heading { display:block; }
+  .section-heading p { margin-top:15px; }
+  .news-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+
+@media(max-width:600px) {
+  .navbar { padding:17px 5%; }
+  .nav-links { gap:13px; font-size:11px; }
+  .nav-links a:nth-child(2),.nav-links a:nth-child(3) { display:none; }
+  .nav-cta { padding:8px 11px; }
+  .hero { padding:65px 6% 55px; }
+  h1 { letter-spacing:-3px; }
+  .orb-stage { height:350px; }
+  .orb { width:240px; }
+  .orb-label { right:-10px; }
+  .section { padding:70px 6%; }
+  .news-grid { grid-template-columns:1fr; }
+  .feature { margin:10px 6% 70px; padding:30px; }
+  .feature-sphere { width:90px; height:90px; }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    animation-duration:.01ms !important;
+    transition-duration:.01ms !important;
+    scroll-behavior:auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="background-glow"></div>
+<canvas id="particles"></canvas>
+
+<nav class="navbar">
+  <a class="logo" href="/">E-<span>chatter.</span></a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="#discover">Discover</a>
+    <a href="#categories">Topics</a>
+    <a class="nav-cta" href="#discover">Explore News ↗</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow"><span class="live-dot"></span> THE FUTURE IS HAPPENING</div>
+
+    <h1>
+      KNOW MORE.<br>
+      <span class="gradient-text">GROW FASTER.</span>
+    </h1>
+
+    <p>
+      Technology never stands still. Neither should you.
+      Discover the ideas, innovations and developments
+      shaping tomorrow's world.
+    </p>
+
+    <div class="hero-actions">
+      <a class="primary-btn" href="#discover">Explore the Future ↗</a>
+      <a class="secondary-btn" href="#categories">Discover Topics</a>
+    </div>
+  </div>
+
+  <div class="orb-stage">
+    <div class="orb-chip">✦ IDEAS IN MOTION</div>
+    <div class="orb">
+      <div class="orb-core"></div>
+      <div class="orb-ring"></div>
+    </div>
+    <div class="orb-label">FUTURE INTELLIGENCE<span>01 / 2026</span></div>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span><b>✦</b> ARTIFICIAL INTELLIGENCE</span>
+    <span><b>✦</b> FUTURE TECHNOLOGY</span>
+    <span><b>✦</b> STARTUP ECOSYSTEM</span>
+    <span><b>✦</b> DIGITAL BUSINESS</span>
+    <span><b>✦</b> IDEAS THAT MATTER</span>
+    <span><b>✦</b> ARTIFICIAL INTELLIGENCE</span>
+    <span><b>✦</b> FUTURE TECHNOLOGY</span>
+    <span><b>✦</b> STARTUP ECOSYSTEM</span>
+    <span><b>✦</b> DIGITAL BUSINESS</span>
+    <span><b>✦</b> IDEAS THAT MATTER</span>
+  </div>
+</div>
+
+<section class="section" id="categories">
+  <div class="section-heading reveal">
+    <div>
+      <small>EXPLORE THE KNOWLEDGE UNIVERSE</small>
+      <h2>Choose your <span class="gradient-text">dimension.</span></h2>
+    </div>
+    <p>From groundbreaking AI developments to the next generation of businesses, explore what moves the world forward.</p>
+  </div>
+
+  <div class="filters reveal">
+    <button class="filter-btn active" data-filter="All">All Topics</button>
+    <button class="filter-btn" data-filter="AI">Artificial Intelligence</button>
+    <button class="filter-btn" data-filter="Technology">Technology</button>
+    <button class="filter-btn" data-filter="Startups">Startups</button>
+    <button class="filter-btn" data-filter="Business">Digital Business</button>
+  </div>
+</section>
+
+<section class="section" id="discover" style="padding-top:0">
+  <div class="section-heading reveal">
+    <div>
+      <small>THE LATEST INTELLIGENCE</small>
+      <h2>Stories worth <span class="gradient-text">knowing.</span></h2>
+    </div>
+    <p>Ideas and insights to help you understand the present and prepare for what's next.</p>
+  </div>
+
+  <div class="news-grid">
+    <article class="news-card reveal" data-category="AI">
+      <div class="card-number">01</div>
+      <div class="card-icon">✧</div>
+      <h3>Artificial Intelligence</h3>
+      <p>Explore AI breakthroughs, intelligent tools and the technologies transforming everyday life.</p>
+      <a class="card-link" href="#discover">Explore AI ↗</a>
+    </article>
+
+    <article class="news-card reveal" data-category="Technology">
+      <div class="card-number">02</div>
+      <div class="card-icon">⌘</div>
+      <h3>Future Technology</h3>
+      <p>Discover the innovations, devices and digital developments changing how the world works.</p>
+      <a class="card-link" href="#discover">Explore Technology ↗</a>
+    </article>
+
+    <article class="news-card reveal" data-category="Startups">
+      <div class="card-number">03</div>
+      <div class="card-icon">◈</div>
+      <h3>Startup Universe</h3>
+      <p>Follow emerging companies, new ideas and the founders building tomorrow's businesses.</p>
+      <a class="card-link" href="#discover">Explore Startups ↗</a>
+    </article>
+
+    <article class="news-card reveal" data-category="Business">
+      <div class="card-number">04</div>
+      <div class="card-icon">⌁</div>
+      <h3>Digital Business</h3>
+      <p>Understand online growth, digital strategy, branding and the changing business landscape.</p>
+      <a class="card-link" href="#discover">Explore Business ↗</a>
+    </article>
+
+    <article class="news-card reveal" data-category="AI">
+      <div class="card-number">05</div>
+      <div class="card-icon">◎</div>
+      <h3>AI in Everyday Life</h3>
+      <p>Learn how artificial intelligence is finding practical uses in work, creativity and learning.</p>
+      <a class="card-link" href="#discover">Explore Insights ↗</a>
+    </article>
+
+    <article class="news-card reveal" data-category="Technology">
+      <div class="card-number">06</div>
+      <div class="card-icon">⟡</div>
+      <h3>Digital Future</h3>
+      <p>Explore the trends and emerging ideas that could shape the next generation of digital life.</p>
+      <a class="card-link" href="#discover">Explore the Future ↗</a>
+    </article>
+  </div>
+</section>
+
+<section class="feature reveal">
+  <div>
+    <small style="color:var(--cyan);letter-spacing:3px">THINK BEYOND TODAY</small>
+    <h2>The future belongs<br>to the curious.</h2>
+    <p>Stay informed. Think independently. Turn knowledge into action. That's the idea behind News to Grow.</p>
+  </div>
+  <div class="feature-sphere"></div>
+</section>
+
+<footer>
+  <span>© 2026 News to Grow · A part of E-chatter</span>
+  <a href="/">← Back to E-chatter</a>
+</footer>
+
+<script>
+// Interactive 3D card tilt
+const cards = document.querySelectorAll('.news-card');
+
+cards.forEach(card => {
+  card.addEventListener('mousemove', e => {
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const rotateY = ((x / rect.width) - .5) * 12;
+    const rotateX = ((.5 - y / rect.height)) * 12;
+
+    card.style.transform =
+      `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+  });
+
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+
+// Category filter
+const filterButtons = document.querySelectorAll('.filter-btn');
+
+filterButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    filterButtons.forEach(item => item.classList.remove('active'));
+    button.classList.add('active');
+
+    const filter = button.dataset.filter;
+
+    cards.forEach(card => {
+      card.classList.toggle(
+        'hidden',
+        filter !== 'All' && card.dataset.category !== filter
+      );
+    });
+  });
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: .12 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Lightweight animated particle background
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let particles = [];
+let width, height;
+
+function resizeCanvas() {
+  const ratio = Math.min(window.devicePixelRatio || 1, 2);
+  width = window.innerWidth;
+  height = window.innerHeight;
+  canvas.width = width * ratio;
+  canvas.height = height * ratio;
+  canvas.style.width = width + 'px';
+  canvas.style.height = height + 'px';
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+  particles = Array.from({length: Math.min(65, Math.floor(width / 17))}, () => ({
+    x: Math.random() * width,
+    y: Math.random() * height,
+    r: Math.random() * 1.7 + .4,
+    dx: (Math.random() - .5) * .25,
+    dy: (Math.random() - .5) * .25
+  }));
+}
+
+function animateParticles() {
+  ctx.clearRect(0, 0, width, height);
+  particles.forEach(p => {
+    p.x += p.dx;
+    p.y += p.dy;
+
+    if (p.x < 0 || p.x > width) p.dx *= -1;
+    if (p.y < 0 || p.y > height) p.dy *= -1;
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(125,205,255,.55)';
+    ctx.fill();
+  });
+  requestAnimationFrame(animateParticles);
+}
+
+resizeCanvas();
+animateParticles();
+window.addEventListener('resize', resizeCanvas);
+</script>
+</body>
+</html>
