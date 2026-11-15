@@ -677,55 +677,41 @@ footer a { color:var(--cyan); }
     <p>Ideas and insights to help you understand the present and prepare for what's next.</p>
   </div>
 
-  <div class="news-grid">
-    <article class="news-card reveal" data-category="AI">
-      <div class="card-number">01</div>
+<div class="news-grid">
+  {% set articles = collections.growth_news %}
+
+  {% if articles.length %}
+    {% for article in articles %}
+      <article class="news-card reveal" data-category="{{ article.data.category }}">
+        <div class="card-number">{{ "%02d" | format(loop.index) }}</div>
+        <div class="card-icon">✧</div>
+
+        <small style="color:var(--cyan);">
+          {{ article.data.category }}
+        </small>
+
+        <h3>{{ article.data.title }}</h3>
+
+        <p>{{ article.data.description }}</p>
+
+        <p style="margin-top:12px;">
+          {{ article.date.toLocaleDateString("en-IN") }}
+        </p>
+
+        <a class="card-link" href="{{ article.url }}">
+          Read Full Story ↗
+        </a>
+      </article>
+    {% endfor %}
+  {% else %}
+    <div class="news-card">
       <div class="card-icon">✧</div>
-      <h3>Artificial Intelligence</h3>
-      <p>Explore AI breakthroughs, intelligent tools and the technologies transforming everyday life.</p>
-      <a class="card-link" href="#discover">Explore AI ↗</a>
-    </article>
+      <h3>New stories are coming.</h3>
+      <p>Our latest AI, technology and digital business reports will appear here soon.</p>
+    </div>
+  {% endif %}
+</div>
 
-    <article class="news-card reveal" data-category="Technology">
-      <div class="card-number">02</div>
-      <div class="card-icon">⌘</div>
-      <h3>Future Technology</h3>
-      <p>Discover the innovations, devices and digital developments changing how the world works.</p>
-      <a class="card-link" href="#discover">Explore Technology ↗</a>
-    </article>
-
-    <article class="news-card reveal" data-category="Startups">
-      <div class="card-number">03</div>
-      <div class="card-icon">◈</div>
-      <h3>Startup Universe</h3>
-      <p>Follow emerging companies, new ideas and the founders building tomorrow's businesses.</p>
-      <a class="card-link" href="#discover">Explore Startups ↗</a>
-    </article>
-
-    <article class="news-card reveal" data-category="Business">
-      <div class="card-number">04</div>
-      <div class="card-icon">⌁</div>
-      <h3>Digital Business</h3>
-      <p>Understand online growth, digital strategy, branding and the changing business landscape.</p>
-      <a class="card-link" href="#discover">Explore Business ↗</a>
-    </article>
-
-    <article class="news-card reveal" data-category="AI">
-      <div class="card-number">05</div>
-      <div class="card-icon">◎</div>
-      <h3>AI in Everyday Life</h3>
-      <p>Learn how artificial intelligence is finding practical uses in work, creativity and learning.</p>
-      <a class="card-link" href="#discover">Explore Insights ↗</a>
-    </article>
-
-    <article class="news-card reveal" data-category="Technology">
-      <div class="card-number">06</div>
-      <div class="card-icon">⟡</div>
-      <h3>Digital Future</h3>
-      <p>Explore the trends and emerging ideas that could shape the next generation of digital life.</p>
-      <a class="card-link" href="#discover">Explore the Future ↗</a>
-    </article>
-  </div>
 </section>
 
 <section class="feature reveal">
