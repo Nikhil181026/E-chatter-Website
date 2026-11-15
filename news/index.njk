@@ -4,257 +4,116 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="E-chatter BGMI Newsroom - BGMI esports की ताज़ा खबरें, टूर्नामेंट, टीम अपडेट और मैच रिजल्ट हिंदी में।">
-  <title>BGMI Newsroom | E-chatter</title>
-
+  <title>BGMI News | E-chatter</title>
+  <meta name="description" content="भारत के BGMI esports की ताज़ा खबरें, टूर्नामेंट, टीम और मैच अपडेट।">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
-      background: #100b13;
-      color: #f7eff8;
+      margin: 0;
+      background: #100b14;
+      color: #fff;
       font-family: Arial, sans-serif;
-      line-height: 1.6;
     }
-
-    a {
-      color: inherit;
-      text-decoration: none;
+    header {
+      padding: 24px 7%;
+      border-bottom: 1px solid #382333;
     }
-
-    .topbar {
-      padding: 20px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #302333;
-    }
-
-    .logo {
-      font-size: 25px;
-      font-weight: 900;
-      letter-spacing: -1px;
-    }
-
-    .logo span {
-      color: #d94a9a;
-    }
-
-    .back-link {
-      color: #d9cbdc;
-      font-size: 14px;
-    }
-
+    header a { color: #d8ff52; text-decoration: none; }
     .hero {
-      padding: 90px 7% 65px;
-      background:
-        radial-gradient(ellipse at 80% 30%, #542044 0%, transparent 42%),
-        linear-gradient(120deg, #180e1d, #100b13);
+      padding: 75px 7% 45px;
+      background: linear-gradient(120deg, #321326, #100b14 70%);
     }
-
-    .eyebrow {
-      color: #c8f45b;
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 3px;
-      text-transform: uppercase;
+    .hero small { color: #d8ff52; letter-spacing: 3px; }
+    h1 { font-size: clamp(38px, 7vw, 76px); margin: 15px 0; }
+    .hero p { color: #c8bdca; font-size: 17px; }
+    main { padding: 45px 7%; }
+    .articles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
     }
-
-    .hero h1 {
-      font-size: clamp(42px, 8vw, 88px);
-      line-height: 1.05;
-      letter-spacing: -4px;
-      max-width: 850px;
-      margin: 20px 0;
+    .article {
+      background: #1c1420;
+      border: 1px solid #39263a;
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform .25s, border-color .25s;
     }
-
-    .hero h1 span {
-      color: #e75aa8;
+    .article:hover {
+      transform: translateY(-6px);
+      border-color: #d8ff52;
     }
-
-    .hero p {
-      max-width: 580px;
-      color: #c8bacb;
-      font-size: 17px;
+    .article img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
     }
-
-    .hero-tag {
+    .content { padding: 22px; }
+    .category { color: #d8ff52; font-size: 13px; }
+    .date { color: #a99eac; font-size: 13px; }
+    h2 { font-size: 23px; line-height: 1.3; }
+    .description { color: #c8bdca; line-height: 1.6; }
+    .read {
       display: inline-block;
-      margin-top: 28px;
-      padding: 10px 17px;
-      border: 1px solid #70506d;
-      border-radius: 30px;
-      color: #d9f78b;
-      font-size: 13px;
+      margin-top: 12px;
+      color: #d8ff52;
+      text-decoration: none;
+      font-weight: bold;
     }
-
-    .content {
-      padding: 55px 7% 90px;
-      max-width: 1450px;
-      margin: auto;
+    .empty {
+      padding: 35px;
+      border: 1px dashed #65465f;
+      border-radius: 14px;
+      color: #c8bdca;
     }
-
-    .section-heading {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 20px;
-      margin-bottom: 28px;
-    }
-
-    .section-heading h2 {
-      font-size: clamp(27px, 4vw, 42px);
-    }
-
-    .section-heading p {
-      color: #a99aaa;
-      font-size: 14px;
-    }
-
-    .categories {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 38px;
-    }
-
-    .category {
-      padding: 9px 17px;
-      border: 1px solid #493447;
-      border-radius: 30px;
-      color: #e4d7e5;
-      font-size: 13px;
-    }
-
-    .category.active {
-      background: #d94a9a;
-      border-color: #d94a9a;
-      color: white;
-    }
-
-    .empty-card {
-      border: 1px solid #3c293c;
-      border-radius: 22px;
-      padding: 55px 25px;
-      text-align: center;
-      background:
-        radial-gradient(circle at 50% 0%, #40213d, transparent 65%),
-        #19111d;
-    }
-
-    .empty-icon {
-      font-size: 48px;
-      margin-bottom: 18px;
-    }
-
-    .empty-card h3 {
-      font-size: 27px;
-      margin-bottom: 12px;
-    }
-
-    .empty-card p {
-      max-width: 500px;
-      margin: auto;
-      color: #b9aabd;
-    }
-
-    .footer {
-      border-top: 1px solid #302333;
-      padding: 25px 7%;
-      color: #9f91a2;
-      font-size: 13px;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    @media (max-width: 600px) {
-      .topbar {
-        padding: 17px 5%;
-      }
-
-      .hero {
-        padding: 65px 5% 50px;
-      }
-
-      .hero h1 {
-        letter-spacing: -2px;
-      }
-
-      .content {
-        padding: 40px 5% 65px;
-      }
-
-      .section-heading {
-        display: block;
-      }
-
-      .section-heading p {
-        margin-top: 7px;
-      }
-
-      .footer {
-        padding: 22px 5%;
-      }
+    footer {
+      padding: 30px 7%;
+      color: #a99eac;
+      border-top: 1px solid #382333;
     }
   </style>
 </head>
-
 <body>
-
-  <header class="topbar">
-    <a href="/" class="logo">E<span>-</span>chatter</a>
-    <a href="/" class="back-link">← Back to main website</a>
+  <header>
+    <a href="/">← E-chatter Home</a>
   </header>
 
   <section class="hero">
-    <div class="eyebrow">E-chatter presents · BGMI coverage</div>
-    <h1>THE BATTLEGROUND.<br><span>THE STORIES.</span></h1>
-    <p>
-      BGMI esports की दुनिया से जुड़ी खबरें, टूर्नामेंट,
-      टीम अपडेट और मैच रिजल्ट — आसान हिंदी में।
-    </p>
-    <div class="hero-tag">🎮 सिर्फ BGMI · हिंदी में</div>
+    <small>E-CHATTER ESPORTS DESK</small>
+    <h1>THE BATTLEGROUND.<br>THE STORIES.</h1>
+    <p>भारत के BGMI esports की खबरें, टूर्नामेंट और मैच अपडेट।</p>
   </section>
 
-  <main class="content">
-    <div class="section-heading">
-      <div>
-        <div class="eyebrow">Stay in the game</div>
-        <h2>Latest BGMI News</h2>
+  <main>
+    <h2>Latest BGMI News</h2>
+
+    {% set articles = collections.bgmi_news %}
+
+    {% if articles.length %}
+      <div class="articles">
+        {% for article in articles %}
+          <article class="article">
+            {% if article.data.featured_image %}
+              <img src="{{ article.data.featured_image }}" alt="{{ article.data.title }}">
+            {% endif %}
+            <div class="content">
+              <span class="category">{{ article.data.category }}</span>
+              <p class="date">{{ article.date.toLocaleDateString("hi-IN") }}</p>
+              <h2>{{ article.data.title }}</h2>
+              <p class="description">{{ article.data.description }}</p>
+              <a class="read" href="{{ article.url }}">पूरी खबर पढ़ें →</a>
+            </div>
+          </article>
+        {% endfor %}
       </div>
-      <p>आपकी BGMI दुनिया, एक ही जगह।</p>
-    </div>
-
-    <nav class="categories" aria-label="News categories">
-      <span class="category active">सभी खबरें</span>
-      <span class="category">ताज़ा खबरें</span>
-      <span class="category">टूर्नामेंट</span>
-      <span class="category">टीम और रोस्टर</span>
-      <span class="category">मैच रिजल्ट</span>
-      <span class="category">खिलाड़ी</span>
-      <span class="category">विश्लेषण</span>
-    </nav>
-
-    <section class="empty-card">
-      <div class="empty-icon">🎯</div>
-      <h3>पहली रिपोर्ट जल्द आ रही है!</h3>
-      <p>
-        हमारी टीम BGMI esports की खबरों को तैयार कर रही है।
-        जल्द ही यहाँ पहली रिपोर्ट पढ़ने को मिलेगी।
-      </p>
-    </section>
+    {% else %}
+      <div class="empty">
+        <h2>पहली रिपोर्ट जल्द आ रही है!</h2>
+        <p>BGMI की ताज़ा खबरों के लिए फिर आएं।</p>
+      </div>
+    {% endif %}
   </main>
 
-  <footer class="footer">
-    <span>© 2026 E-chatter. Dream. Design. Deliver.</span>
-    <a href="/">Visit E-chatter →</a>
-  </footer>
-
+  <footer>© E-chatter — Dream. Design. Deliver.</footer>
 </body>
 </html>
