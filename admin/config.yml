@@ -1,0 +1,52 @@
+
+backend:
+  name: github
+  repo: Nikhil181026/E-chatter-Website
+  branch: main
+
+media_folder: "news/images"
+public_folder: "/news/images"
+
+collections:
+  - name: "bgmi_news"
+    label: "BGMI News"
+    folder: "news/articles"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - label: "Headline"
+        name: "title"
+        widget: "string"
+
+      - label: "Short Description"
+        name: "description"
+        widget: "text"
+
+      - label: "Publish Date"
+        name: "date"
+        widget: "datetime"
+
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - "ताज़ा खबरें"
+          - "टूर्नामेंट"
+          - "टीम और रोस्टर"
+          - "मैच रिजल्ट"
+          - "खिलाड़ी"
+          - "विश्लेषण"
+
+      - label: "Cover Image"
+        name: "featured_image"
+        widget: "image"
+        required: false
+
+      - label: "Source Link"
+        name: "source_url"
+        widget: "string"
+        required: false
+
+      - label: "Article Content"
+        name: "body"
+        widget: "markdown"
