@@ -10,9 +10,12 @@ category: AI
 
 ```
 
+
+
 ![]()
 
 ### Half of provinces, municipalities have AI education mandates
+
 National AI literacy standards remain unsettled
 Research shows mixed gains, concerns over AI dependence
 BEIJING, Nov 16 (Reuters) - At a top private school in Beijing, 13-year-old Peng Gaodi has used artificial intelligence to build more than 200 apps, including a homework-submission platform and a secondhand marketplace. He pitches ideas to real investors, idolises Elon Musk and hopes to become a computer scientist.
